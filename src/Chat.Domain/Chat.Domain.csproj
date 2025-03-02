@@ -10,4 +10,9 @@
       <PackageReference Include="JetBrains.Annotations" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Chat.Contracts\Chat.Contracts.csproj" />
+      <ProjectReference Include="..\Chat.Domain.Shared\Chat.Domain.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

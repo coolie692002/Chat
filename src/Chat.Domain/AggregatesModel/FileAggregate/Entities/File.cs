@@ -1,12 +1,14 @@
-﻿using Chat.Domain.AggregatesModel.FileAggregate.Enums;
+﻿using Ardalis.GuardClauses;
+using Chat.Contracts.Domain;
+using Chat.Domain.AggregatesModel.FileAggregate.Enums;
+using Chat.Domain.AggregatesModel.FileAggregate.Exceptions;
+using Chat.Domain.Shared;
 using JetBrains.Annotations;
 
 namespace Chat.Domain.AggregatesModel.FileAggregate.Entities;
 
-public class File
+public class File : FullAuditedAggregateRoot<Guid>
 {
-    public Guid Id { get; protected set; }
-
     public Guid? ParentId { get; protected set; }
 
     public string FileContainerName { get; protected set; }
@@ -51,9 +53,13 @@ public class File
         long byteSize,
         string? hash,
         string? blobName,
-        string? flag = null)
+        string? flag = null) : base(id)
     {
-        Id = id;
+        if (parent != null && parent.FileContainerName != fileContainerName)
+        {
+            throw new UnexpectedFileContainerNameException();
+        }
+        
         ParentId = parent?.Id;
         FileContainerName = fileContainerName;
         FileName = fileName;

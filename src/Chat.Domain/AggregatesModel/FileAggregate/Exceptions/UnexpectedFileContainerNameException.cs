@@ -1,6 +1,6 @@
 ﻿namespace Chat.Domain.AggregatesModel.FileAggregate.Exceptions;
 
-public class UnexpectedFileContainerNameException
+public class UnexpectedFileContainerNameException : Exception
 {
     
 }

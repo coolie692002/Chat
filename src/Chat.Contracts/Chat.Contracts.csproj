@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Ardalis.GuardClauses" />
+      <PackageReference Include="MediatR" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    </ItemGroup>
+
 </Project>
